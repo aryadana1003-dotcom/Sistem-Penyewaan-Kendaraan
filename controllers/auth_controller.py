@@ -38,9 +38,6 @@ class AuthController:
         self.dashboard.btn_penyewaan.configure(command=lambda: self.buka_penyewaan(role, id_user))
         self.dashboard.btn_pembayaran.configure(command=lambda: self.buka_pembayaran(role))
         
-        if role.lower() == "admin":
-            self.dashboard.btn_user.configure(command=self.buka_user)
-            
         self.dashboard.btn_logout.configure(command=self.logout)
         self.dashboard.mainloop()
 
@@ -60,10 +57,6 @@ class AuthController:
     def buka_pembayaran(self, role):
         from controllers.pembayaran_controller import PembayaranController
         PembayaranController(role)
-
-    def buka_user(self):
-        from controllers.user_controller import UserController
-        UserController()
 
     def logout(self):
         self.dashboard.destroy()
