@@ -28,6 +28,11 @@ class DashboardView(ctk.CTkToplevel):
         
         self.btn_pembayaran = ctk.CTkButton(self.sidebar_frame, text="Data Pembayaran")
         self.btn_pembayaran.pack(pady=10, padx=20, fill="x")
+
+        # LOGIKA KHUSUS ADMIN
+        self.btn_laporan = ctk.CTkButton(self.sidebar_frame, text="Laporan Penyewaan", fg_color="orange")
+        if role.lower() == "admin":
+            self.btn_laporan.pack(pady=10, padx=20, fill="x")
         
         self.btn_logout = ctk.CTkButton(self.sidebar_frame, text="Logout", fg_color="red")
         self.btn_logout.pack(pady=40, padx=20, fill="x", side="bottom")

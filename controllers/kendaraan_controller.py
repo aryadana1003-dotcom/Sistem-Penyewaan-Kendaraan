@@ -4,21 +4,30 @@ from models.kendaraan_model import KendaraanModel
 from views.kendaraan_view import KendaraanView
 
 class KendaraanController:
-    def __init__(self, user_role="Petugas"):
+    # Ditambahkan parameter dashboard_window
+    def __init__(self, user_role, dashboard_window):
         self.user_role = user_role
+        self.dashboard_window = dashboard_window
         self.model = KendaraanModel()
         self.view = KendaraanView()
         
         self.view.btn_simpan.configure(command=self.simpan_data)
         
-        # Otorisasi: Hanya Admin yang bisa menghapus data kendaraan
         if self.user_role.lower() != "admin":
             self.view.btn_hapus.configure(state="disabled", text="Hapus (Khusus Admin)")
         else:
             self.view.btn_hapus.configure(command=self.hapus_data)
             
+        # Binding tombol kembali dan tombol [X] (close) pada window
+        self.view.btn_kembali.configure(command=self.kembali_ke_dashboard)
+        self.view.protocol("WM_DELETE_WINDOW", self.kembali_ke_dashboard)
+            
         self.muat_data_tabel()
         
+    def kembali_ke_dashboard(self):
+        self.view.destroy()
+        self.dashboard_window.deiconify()
+
     def muat_data_tabel(self):
         for item in self.view.table.get_children():
             self.view.table.delete(item)

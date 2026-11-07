@@ -1,18 +1,28 @@
-# kelompok 4
+# Kelompok 4
 import tkinter.messagebox as messagebox
 from models.pelanggan_model import PelangganModel
 from views.pelanggan_view import PelangganView
 
 class PelangganController:
-    def __init__(self, user_role="Petugas"):
+    # Ditambahkan parameter dashboard_window
+    def __init__(self, user_role, dashboard_window):
+        self.dashboard_window = dashboard_window
         self.model = PelangganModel()
         self.view = PelangganView()
         
         self.view.btn_simpan.configure(command=self.simpan_data)
         self.view.btn_hapus.configure(command=self.hapus_data)
         
+        # Binding tombol kembali dan tombol [X] (close) pada window
+        self.view.btn_kembali.configure(command=self.kembali_ke_dashboard)
+        self.view.protocol("WM_DELETE_WINDOW", self.kembali_ke_dashboard)
+        
         self.muat_data_tabel()
         
+    def kembali_ke_dashboard(self):
+        self.view.destroy()                # Tutup jendela pelanggan
+        self.dashboard_window.deiconify()  # Tampilkan kembali dashboard
+
     def muat_data_tabel(self):
         for item in self.view.table.get_children():
             self.view.table.delete(item)
@@ -24,7 +34,8 @@ class PelangganController:
     def simpan_data(self):
         nama = self.view.entry_nama.get()
         telp = self.view.entry_telepon.get()
-        alamat = self.view.entry_alamat.get("1.0", "end-1c")
+        # Perbaikan Error: Menggunakan get() kosong karena menggunakan CTkEntry
+        alamat = self.view.entry_alamat.get()
         
         if not nama or not telp:
             messagebox.showwarning("Peringatan", "Nama dan No Telepon harus diisi!")

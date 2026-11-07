@@ -4,12 +4,24 @@ from models.penyewaan_model import PenyewaanModel
 from views.laporan_view import LaporanView
 
 class LaporanController:
-    def __init__(self, user_role="Admin"):
+    # Tambahkan parameter user_role dan dashboard_window
+    def __init__(self, user_role, dashboard_window):
+        self.user_role = user_role
+        self.dashboard_window = dashboard_window
         self.model = PenyewaanModel()
         self.view = LaporanView()
         
         self.view.btn_refresh.configure(command=self.muat_laporan)
+        
+        # Binding tombol kembali dan tombol [X] (close) pada window
+        self.view.btn_kembali.configure(command=self.kembali_ke_dashboard)
+        self.view.protocol("WM_DELETE_WINDOW", self.kembali_ke_dashboard)
+        
         self.muat_laporan()
+        
+    def kembali_ke_dashboard(self):
+        self.view.destroy()
+        self.dashboard_window.deiconify()
         
     def muat_laporan(self):
         for item in self.view.table.get_children():
@@ -17,8 +29,6 @@ class LaporanController:
             
         data = self.model.get_all_penyewaan()
         for p in data:
-            # Karena pada laporan_view kolomnya: id_sewa, pelanggan, nopol, kendaraan, tgl_sewa, total, status_sewa, status_bayar
-            # Kita map data yang tersedia dari PenyewaanModel
             self.view.table.insert("", "end", values=(
                 p['id_penyewaan'], 
                 p['nama_pelanggan'], 
@@ -27,5 +37,5 @@ class LaporanController:
                 p['tanggal_sewa'], 
                 p['total_biaya'], 
                 p['status_penyewaan'],
-                "Cek Detail" # Dummy stat jika tabel pembayaran tidak di-join secara explisit
+                "Cek Detail"
             ))
