@@ -29,17 +29,3 @@ class UserModel:
                 print(f"Error autentikasi: {e}")
                 return None
         return None
-        
-    def get_all_user(self):
-        if self.conn:
-            try:
-                cursor = self.conn.cursor(dictionary=True)
-                query = f"SELECT id_user, nama, username, role FROM {self.table_name}"
-                cursor.execute(query)
-                result = cursor.fetchall()
-                cursor.close()
-                return result
-            except Exception as e:
-                print(f"Error get_all_user: {e}")
-                return []
-        return []
