@@ -17,12 +17,13 @@ class PenyewaanView(ctk.CTkToplevel):
         self.frame_kiri.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
         
         ctk.CTkLabel(self.frame_kiri, text="Form Penyewaan", font=("Arial", 16, "bold")).pack(pady=15)
+
+        # Ganti Entry dengan ComboBox
+        self.combo_pelanggan = ctk.CTkComboBox(self.frame_kiri, values=["Pilih Pelanggan"])
+        self.combo_pelanggan.pack(pady=10, padx=15, fill="x")
         
-        self.entry_id_pelanggan = ctk.CTkEntry(self.frame_kiri, placeholder_text="ID Pelanggan")
-        self.entry_id_pelanggan.pack(pady=10, padx=15, fill="x")
-        
-        self.entry_id_kendaraan = ctk.CTkEntry(self.frame_kiri, placeholder_text="ID Kendaraan")
-        self.entry_id_kendaraan.pack(pady=10, padx=15, fill="x")
+        self.combo_kendaraan = ctk.CTkComboBox(self.frame_kiri, values=["Pilih Kendaraan"])
+        self.combo_kendaraan.pack(pady=10, padx=15, fill="x")
         
         self.entry_tgl_sewa = ctk.CTkEntry(self.frame_kiri, placeholder_text="Tanggal Sewa (YYYY-MM-DD)")
         self.entry_tgl_sewa.pack(pady=10, padx=15, fill="x")
@@ -42,6 +43,10 @@ class PenyewaanView(ctk.CTkToplevel):
         
         self.btn_selesai = ctk.CTkButton(self.frame_kiri, text="Selesaikan Sewa", fg_color="blue")
         self.btn_selesai.pack(pady=5, padx=15, fill="x")
+
+        # TOMBOL KEMBALI
+        self.btn_kembali = ctk.CTkButton(self.frame_kiri, text="Kembali ke Dashboard", fg_color="gray", command=self.destroy)
+        self.btn_kembali.pack(pady=15, padx=15, fill="x")
 
         # --- FRAME KANAN: TABEL DATA PENYEWAAN ---
         self.frame_kanan = ctk.CTkFrame(self)

@@ -48,6 +48,10 @@ class KendaraanView(ctk.CTkToplevel): # Menggunakan Toplevel agar terbuka sebaga
         self.btn_hapus = ctk.CTkButton(self.frame_kiri, text="Hapus Data Terpilih", fg_color="red")
         self.btn_hapus.pack(pady=5, padx=15, fill="x")
 
+        # TOMBOL KEMBALI KE DASHBOARD
+        self.btn_kembali = ctk.CTkButton(self.frame_kiri, text="Kembali ke Dashboard", fg_color="gray", command=self.destroy)
+        self.btn_kembali.pack(pady=15, padx=15, fill="x")
+
         # --- FRAME KANAN: TABEL DATA KENDARAAN ---
         self.frame_kanan = ctk.CTkFrame(self)
         self.frame_kanan.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")

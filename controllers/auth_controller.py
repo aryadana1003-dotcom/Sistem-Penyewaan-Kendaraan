@@ -39,7 +39,6 @@ class AuthController:
         self.dashboard.btn_pembayaran.configure(command=lambda: self.buka_pembayaran(role))
         
         self.dashboard.btn_logout.configure(command=self.logout)
-        self.dashboard.mainloop()
 
     # Fungsi navigasi untuk membuka controller lain (Lazy Import untuk mencegah circular import)
     def buka_kendaraan(self, role):

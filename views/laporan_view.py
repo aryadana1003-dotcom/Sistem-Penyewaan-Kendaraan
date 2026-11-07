@@ -19,7 +19,11 @@ class LaporanView(ctk.CTkToplevel):
         
         self.btn_refresh = ctk.CTkButton(self.frame_atas, text="Muat Ulang Laporan", fg_color="blue")
         self.btn_refresh.pack(pady=10)
-        
+
+        # TOMBOL KEMBALI KE DASHBOARD
+        self.btn_kembali = ctk.CTkButton(self.frame_kiri, text="Kembali ke Dashboard", fg_color="gray", command=self.destroy)
+        self.btn_kembali.pack(pady=15, padx=15, fill="x")
+
         # --- TABEL KONTEN LAPORAN ---
         self.frame_bawah = ctk.CTkFrame(self)
         self.frame_bawah.grid(row=1, column=0, padx=10, pady=10, sticky="nsew")
