@@ -1,4 +1,4 @@
-# Aryadana Agung Karama F5212510013
+# Kelompok 4
 import mysql.connector
 from mysql.connector import Error
 
