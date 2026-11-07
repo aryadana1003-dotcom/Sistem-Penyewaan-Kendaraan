@@ -134,8 +134,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nama`, `username`, `password_hash`, `role`) VALUES
-(1, 'Admin Utama', 'admin', 'HASH_PASSWORD_ADMIN', 'Admin'),
-(2, 'Petugas Satu', 'petugas1', 'HASH_PASSWORD_PETUGAS', 'Petugas');
+(1, 'Admin', 'admin', '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9', 'Admin'),
+(2, 'Petugas', 'petugas', '2dad904f71aa0dcf6ea1addaa084a5865ffe448e4d3f900668e1cc7e7b6153d7', 'Petugas');
 
 --
 -- Indexes for dumped tables
