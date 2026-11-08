@@ -44,6 +44,22 @@ class PenyewaanModel:
                 return False
         return False
 
+    def update_penyewaan(self, id_penyewaan, id_pelanggan, id_kendaraan, tanggal_sewa, tanggal_kembali, total_biaya, status_penyewaan):
+        if self.conn:
+            try:
+                cursor = self.conn.cursor()
+                query = f"UPDATE {self.table_name} SET id_pelanggan=%s, id_kendaraan=%s, tanggal_sewa=%s, tanggal_kembali=%s, total_biaya=%s, status_penyewaan=%s WHERE id_penyewaan=%s"
+                val = (id_pelanggan, id_kendaraan, tanggal_sewa, tanggal_kembali, total_biaya, status_penyewaan, id_penyewaan)
+                cursor.execute(query, val)
+                self.conn.commit()
+                cursor.close()
+                return True
+            except Exception as e:
+                print(f"Error update_penyewaan: {e}")
+                self.conn.rollback()
+                return False
+        return False
+
     def update_status_penyewaan(self, id_penyewaan, status_penyewaan, tanggal_kembali_aktual=None):
         if self.conn:
             try:

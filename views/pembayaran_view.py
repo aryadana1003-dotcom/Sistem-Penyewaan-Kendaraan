@@ -17,10 +17,10 @@ class PembayaranView(ctk.CTkToplevel):
         self.frame_kiri.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
         
         ctk.CTkLabel(self.frame_kiri, text="Form Pembayaran", font=("Arial", 16, "bold")).pack(pady=15)
-        
-        self.entry_id_penyewaan = ctk.CTkEntry(self.frame_kiri, placeholder_text="ID Penyewaan")
-        self.entry_id_penyewaan.pack(pady=10, padx=15, fill="x")
-        
+
+        self.combo_penyewaan = ctk.CTkComboBox(self.frame_kiri, values=["Pilih Transaksi Penyewaan"])
+        self.combo_penyewaan.pack(pady=10, padx=15, fill="x")
+
         self.entry_tgl_bayar = ctk.CTkEntry(self.frame_kiri, placeholder_text="Tanggal Bayar (YYYY-MM-DD)")
         self.entry_tgl_bayar.pack(pady=10, padx=15, fill="x")
         
@@ -36,7 +36,13 @@ class PembayaranView(ctk.CTkToplevel):
         self.combo_status.set("Lunas")
         
         self.btn_simpan = ctk.CTkButton(self.frame_kiri, text="Proses Pembayaran", fg_color="green")
-        self.btn_simpan.pack(pady=20, padx=15, fill="x")
+        self.btn_simpan.pack(pady=10, padx=15, fill="x")
+        
+        self.btn_update = ctk.CTkButton(self.frame_kiri, text="Update Data Terpilih", fg_color="blue")
+        self.btn_update.pack(pady=10, padx=15, fill="x")
+        
+        self.btn_kembali = ctk.CTkButton(self.frame_kiri, text="Kembali ke Dashboard", fg_color="gray", command=self.destroy)
+        self.btn_kembali.pack(pady=15, padx=15, fill="x")
 
         # --- FRAME KANAN: TABEL PEMBAYARAN ---
         self.frame_kanan = ctk.CTkFrame(self)

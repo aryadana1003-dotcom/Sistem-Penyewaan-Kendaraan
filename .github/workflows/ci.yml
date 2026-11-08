@@ -1,0 +1,45 @@
+# Kelompok 4
+name: Python CI Pipeline
+
+# Trigger (Pemicu): Pipeline akan berjalan otomatis saat ada Push atau PR ke branch 'main'
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    # Menggunakan OS Linux Ubuntu terbaru (standar server CI)
+    runs-on: ubuntu-latest
+
+    steps:
+    # Langkah 1: Mengambil salinan kode dari repositori GitHub
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    # Langkah 2: Menyiapkan environment Python (sesuaikan versinya jika perlu, misal 3.11 atau 3.12)
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+        cache: 'pip' # Mempercepat proses instalasi berikutnya
+
+    # Langkah 3: Menginstal dependensi sistem operasi (xvfb dibutuhkan untuk GUI Tkinter di Linux)
+    - name: Install System Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y xvfb python3-tk
+
+    # Langkah 4: Menginstal pustaka Python dari requirements.txt
+    - name: Install Python Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pytest pytest-cov
+
+    # Langkah 5: Menjalankan Unit Testing
+    # Menggunakan xvfb-run agar customtkinter tidak error karena tidak menemukan layar monitor
+    - name: Run Tests with Pytest
+      run: |
+        xvfb-run python -m pytest tests/ -v

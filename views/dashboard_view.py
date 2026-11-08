@@ -1,8 +1,8 @@
 # Kelompok 4
 import customtkinter as ctk
 
-class DashboardView(ctk.CTk):
-    def __init__(self, role="Petugas"):
+class DashboardView(ctk.CTkToplevel):
+    def __init__(self, role="Petugas", master=None):
         super().__init__()
         self.title(f"Dashboard Penyewaan Kendaraan - Role: {role.upper()}")
         self.geometry("900x500")
@@ -28,12 +28,12 @@ class DashboardView(ctk.CTk):
         
         self.btn_pembayaran = ctk.CTkButton(self.sidebar_frame, text="Data Pembayaran")
         self.btn_pembayaran.pack(pady=10, padx=20, fill="x")
-        
-        # Otorisasi: Menu User hanya untuk Admin
-        self.btn_user = ctk.CTkButton(self.sidebar_frame, text="Manajemen User", fg_color="orange")
+
+        # LOGIKA KHUSUS ADMIN
+        self.btn_laporan = ctk.CTkButton(self.sidebar_frame, text="Laporan Penyewaan", fg_color="orange")
         if role.lower() == "admin":
-            self.btn_user.pack(pady=10, padx=20, fill="x")
-            
+            self.btn_laporan.pack(pady=10, padx=20, fill="x")
+        
         self.btn_logout = ctk.CTkButton(self.sidebar_frame, text="Logout", fg_color="red")
         self.btn_logout.pack(pady=40, padx=20, fill="x", side="bottom")
 

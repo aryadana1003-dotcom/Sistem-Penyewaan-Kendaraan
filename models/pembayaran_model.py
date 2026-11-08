@@ -21,6 +21,22 @@ class PembayaranModel:
                 return []
         return []
 
+    def update_pembayaran(self, id_pembayaran, id_penyewaan, tanggal_bayar, jumlah_bayar, metode_pembayaran, status_pembayaran):
+        if self.conn:
+            try:
+                cursor = self.conn.cursor()
+                query = f"UPDATE {self.table_name} SET id_penyewaan=%s, tanggal_bayar=%s, jumlah_bayar=%s, metode_pembayaran=%s, status_pembayaran=%s WHERE id_pembayaran=%s"
+                val = (id_penyewaan, tanggal_bayar, jumlah_bayar, metode_pembayaran, status_pembayaran, id_pembayaran)
+                cursor.execute(query, val)
+                self.conn.commit()
+                cursor.close()
+                return True
+            except Exception as e:
+                print(f"Error update_pembayaran: {e}")
+                self.conn.rollback()
+                return False
+        return False
+
     def create_pembayaran(self, id_penyewaan, tanggal_bayar, jumlah_bayar, metode_pembayaran, status_pembayaran="Lunas"):
         if self.conn:
             try:
