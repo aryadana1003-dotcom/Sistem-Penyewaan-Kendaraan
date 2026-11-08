@@ -29,13 +29,13 @@ class LaporanController:
             
         data = self.model.get_all_penyewaan()
         for p in data:
-            self.view.table.insert("", "end", values=(
+            self.table_values = (
                 p['id_penyewaan'], 
                 p['nama_pelanggan'], 
                 p['nomor_polisi'], 
                 p['merk'], 
                 p['tanggal_sewa'], 
                 p['total_biaya'], 
-                p['status_penyewaan'],
-                "Cek Detail"
-            ))
+                p['status_penyewaan']
+            )
+            self.view.table.insert("", "end", values=self.table_values)
