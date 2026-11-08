@@ -42,4 +42,4 @@ jobs:
     # Menggunakan xvfb-run agar customtkinter tidak error karena tidak menemukan layar monitor
     - name: Run Tests with Pytest
       run: |
-        xvfb-run pytest tests/ -v
+        xvfb-run python -m pytest tests/ -v
