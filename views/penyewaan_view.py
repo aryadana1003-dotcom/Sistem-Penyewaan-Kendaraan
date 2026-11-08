@@ -38,13 +38,15 @@ class PenyewaanView(ctk.CTkToplevel):
         self.combo_status.pack(pady=10, padx=15, fill="x")
         self.combo_status.set("Menunggu Pembayaran")
         
-        self.btn_simpan = ctk.CTkButton(self.frame_kiri, text="Buat Transaksi", fg_color="green")
-        self.btn_simpan.pack(pady=20, padx=15, fill="x")
+        self.btn_simpan = ctk.CTkButton(self.frame_kiri, text="Buat Transaksi Baru", fg_color="green")
+        self.btn_simpan.pack(pady=10, padx=15, fill="x")
         
-        self.btn_selesai = ctk.CTkButton(self.frame_kiri, text="Selesaikan Sewa", fg_color="blue")
-        self.btn_selesai.pack(pady=5, padx=15, fill="x")
-
-        # TOMBOL KEMBALI
+        self.btn_update = ctk.CTkButton(self.frame_kiri, text="Update Transaksi Terpilih", fg_color="blue")
+        self.btn_update.pack(pady=10, padx=15, fill="x")
+        
+        self.btn_selesai = ctk.CTkButton(self.frame_kiri, text="Selesaikan Sewa", fg_color="orange")
+        self.btn_selesai.pack(pady=10, padx=15, fill="x")
+        
         self.btn_kembali = ctk.CTkButton(self.frame_kiri, text="Kembali ke Dashboard", fg_color="gray", command=self.destroy)
         self.btn_kembali.pack(pady=15, padx=15, fill="x")
 

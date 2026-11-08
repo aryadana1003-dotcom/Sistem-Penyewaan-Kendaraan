@@ -27,13 +27,15 @@ class PelangganView(ctk.CTkToplevel):
         self.entry_alamat = ctk.CTkEntry(self.frame_kiri, placeholder_text="Masukkan Alamat Lengkap")
         self.entry_alamat.pack(pady=10, padx=15, fill="x")
         
-        self.btn_simpan = ctk.CTkButton(self.frame_kiri, text="Simpan Data", fg_color="green")
-        self.btn_simpan.pack(pady=20, padx=15, fill="x")
+        self.btn_simpan = ctk.CTkButton(self.frame_kiri, text="Simpan Data Baru", fg_color="green")
+        self.btn_simpan.pack(pady=10, padx=15, fill="x")
+        
+        self.btn_update = ctk.CTkButton(self.frame_kiri, text="Update Data Terpilih", fg_color="blue")
+        self.btn_update.pack(pady=10, padx=15, fill="x")
         
         self.btn_hapus = ctk.CTkButton(self.frame_kiri, text="Hapus Data Terpilih", fg_color="red")
-        self.btn_hapus.pack(pady=5, padx=15, fill="x")
+        self.btn_hapus.pack(pady=10, padx=15, fill="x")
 
-        # TOMBOL KEMBALI KE DASHBOARD
         self.btn_kembali = ctk.CTkButton(self.frame_kiri, text="Kembali ke Dashboard", fg_color="gray", command=self.destroy)
         self.btn_kembali.pack(pady=15, padx=15, fill="x")
 

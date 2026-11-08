@@ -36,11 +36,13 @@ class PembayaranView(ctk.CTkToplevel):
         self.combo_status.set("Lunas")
         
         self.btn_simpan = ctk.CTkButton(self.frame_kiri, text="Proses Pembayaran", fg_color="green")
-        self.btn_simpan.pack(pady=20, padx=15, fill="x")
-
-        # TOMBOL KEMBALI
+        self.btn_simpan.pack(pady=10, padx=15, fill="x")
+        
+        self.btn_update = ctk.CTkButton(self.frame_kiri, text="Update Data Terpilih", fg_color="blue")
+        self.btn_update.pack(pady=10, padx=15, fill="x")
+        
         self.btn_kembali = ctk.CTkButton(self.frame_kiri, text="Kembali ke Dashboard", fg_color="gray", command=self.destroy)
-        self.btn_kembali.pack(pady=5, padx=15, fill="x")
+        self.btn_kembali.pack(pady=15, padx=15, fill="x")
 
         # --- FRAME KANAN: TABEL PEMBAYARAN ---
         self.frame_kanan = ctk.CTkFrame(self)
