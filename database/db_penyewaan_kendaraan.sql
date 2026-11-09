@@ -57,16 +57,17 @@ CREATE TABLE `pelanggan` (
   `id_pelanggan` int NOT NULL,
   `nama` varchar(100) NOT NULL,
   `no_telepon` varchar(20) NOT NULL,
-  `alamat` text NOT NULL
+  `alamat` text NOT NULL,
+  `status` enum('Aktif','Dihapus') NOT NULL DEFAULT 'Aktif'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `pelanggan`
 --
 
-INSERT INTO `pelanggan` (`id_pelanggan`, `nama`, `no_telepon`, `alamat`) VALUES
-(1, 'Andi Saputra', '081298765432', 'Palu'),
-(2, 'Budi Santoso', '082345678901', 'Donggala');
+INSERT INTO `pelanggan` (`id_pelanggan`, `nama`, `no_telepon`, `alamat`, `status`) VALUES
+(1, 'Andi Saputra', '081298765432', 'Palu', 'Aktif'),
+(2, 'Budi Santoso', '082345678901', 'Donggala', 'Aktif');
 
 -- --------------------------------------------------------
 

@@ -16,7 +16,8 @@ class Database:
                 host = self.host,
                 database = self.db_name,
                 user = self.username,
-                password = self.password
+                password = self.password,
+                autocommit = True
             )
             if self.conn.is_connected():
                 return self.conn

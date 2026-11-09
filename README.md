@@ -4,13 +4,24 @@ Aplikasi Desktop **Sistem Penyewaan Kendaraan** berbasis Python yang dibangun me
 
 ---
 
+## 👥 Tim Pengembang (Kelompok 4)
+* **Khatamarrasyid** (F5212510002)
+* **Siti Fadilah Kirani** (F5212510007)
+* **Aryadana Agung Karama** (F5212510013)
+* **Zaskya Putri Safandra** (F5212510023)
+* **Fanny Cindia Rahma Sari** (F5212510030)
+* **Inayah Alghoni Wahyudin Abdeli** (F5212510033)
+* **Sitti Naila Novanas Tombili** (F5212520038)
+
+---
+
 ## 🚀 Fitur Utama
 1. **Autentikasi & Keamanan**: 
    * Sistem login aman dengan enkripsi password **SHA-256**.
    * Hak akses pengguna berbasis peran (**Admin** dan **Petugas**).
 2. **Manajemen Master Data (CRUD & Update)**:
    * **Data Kendaraan**: Pengelolaan informasi armada, status ketersediaan, tarif, dan fitur pembaruan data secara *real-time*.
-   * **Data Pelanggan**: Pendataan identitas, nomor telepon, alamat, serta fitur edit data.
+   * **Data Pelanggan**: Pendataan identitas, nomor telepon, alamat, fitur edit data, serta fitur hapus data sesuai hak akses.
 3. **Manajemen Transaksi**:
    * **Penyewaan**: Pembuatan transaksi sewa dengan pemilihan otomatis data pelanggan dan kendaraan melalui *ComboBox*, serta perhitungan total biaya.
    * **Pembayaran**: Pencatatan riwayat pembayaran yang terintegrasi otomatis dengan total biaya transaksi penyewaan.
@@ -27,7 +38,7 @@ Aplikasi Desktop **Sistem Penyewaan Kendaraan** berbasis Python yang dibangun me
 ## 🛠️ Teknologi yang Digunakan
 * **Bahasa Pemrograman**: Python 3.x
 * **GUI Framework**: CustomTkinter
-* **Basis Data**: MySQL (Laragon / XAMPP)
+* **Basis Data**: MySQL (Laragon)
 * **Konektor DB**: `mysql-connector-python`
 * **Pengujian**: `pytest`, `pytest-cov`
 * **CI/CD**: GitHub Actions
@@ -40,35 +51,37 @@ Sistem-Penyewaan-Kendaraan/
 │
 ├── .github/
 │   └── workflows/
-│       └── ci.yml             # Konfigurasi GitHub Actions CI Pipeline
+│       └── ci.yml                 # Konfigurasi GitHub Actions CI Pipeline
 ├── config/
-│   └── database.py            # Konfigurasi koneksi database MySQL
+│   └── database.py                # Konfigurasi koneksi database MySQL
+├── database/
+│   └── db_penyewaan_kendaraan.sql # Database SQL
 ├── controllers/
-│   ├── auth_controller.py     # Kontroler autentikasi & navigasi dashboard
-│   ├── kendaraan_controller.py# Logika kontroler data kendaraan
-│   ├── pelanggan_controller.py# Logika kontroler data pelanggan
-│   ├── penyewaan_controller.py# Logika kontroler transaksi penyewaan
-│   ├── pembayaran_controller.py# Logika kontroler transaksi pembayaran
-│   └── laporan_controller.py  # Logika kontroler laporan (Admin)
+│   ├── auth_controller.py         # Kontroler autentikasi & navigasi dashboard
+│   ├── kendaraan_controller.py    # Logika kontroler data kendaraan
+│   ├── pelanggan_controller.py    # Logika kontroler data pelanggan
+│   ├── penyewaan_controller.py    # Logika kontroler transaksi penyewaan
+│   ├── pembayaran_controller.py   # Logika kontroler transaksi pembayaran
+│   └── laporan_controller.py      # Logika kontroler laporan (Admin)
 ├── models/
-│   ├── user_model.py          # Model database & enkripsi SHA-256 user
-│   ├── kendaraan_model.py     # Model database CRUD kendaraan
-│   ├── pelanggan_model.py     # Model database CRUD pelanggan
-│   ├── penyewaan_model.py     # Model database CRUD penyewaan
-│   └── pembayaran_model.py    # Model database CRUD pembayaran
+│   ├── user_model.py              # Model database & enkripsi SHA-256 user
+│   ├── kendaraan_model.py         # Model database CRUD kendaraan
+│   ├── pelanggan_model.py         # Model database CRUD pelanggan
+│   ├── penyewaan_model.py         # Model database CRUD penyewaan
+│   └── pembayaran_model.py        # Model database CRUD pembayaran
 ├── views/
-│   ├── login_view.py          # Tampilan antarmuka login
-│   ├── dashboard_view.py      # Tampilan antarmuka dashboard utama
-│   ├── kendaraan_view.py      # Tampilan form & tabel kendaraan
-│   ├── pelanggan_view.py      # Tampilan form & tabel pelanggan
-│   ├── penyewaan_view.py      # Tampilan form & tabel penyewaan
-│   ├── pembayaran_view.py     # Tampilan form & tabel pembayaran
-│   └── laporan_view.py        # Tampilan laporan penyewaan
+│   ├── login_view.py              # Tampilan antarmuka login
+│   ├── dashboard_view.py          # Tampilan antarmuka dashboard utama
+│   ├── kendaraan_view.py          # Tampilan form & tabel kendaraan
+│   ├── pelanggan_view.py          # Tampilan form & tabel pelanggan
+│   ├── penyewaan_view.py          # Tampilan form & tabel penyewaan
+│   ├── pembayaran_view.py         # Tampilan form & tabel pembayaran
+│   └── laporan_view.py            # Tampilan laporan penyewaan
 ├── tests/
-│   ├── test_user_model.py     # Unit test untuk model user & autentikasi
-│   └── test_kendaraan_model.py# Unit test untuk model kendaraan
-├── env/                       # Virtual Environment Python
-├── conftest.py                # Konfigurasi root pytest
-├── main.py                    # Titik masuk utama aplikasi (Entry Point)
-├── requirements.txt           # Daftar dependensi pustaka Python
-└── README.md                  # Dokumentasi proyek
+│   ├── test_user_model.py         # Unit test untuk model user & autentikasi
+│   └── test_kendaraan_model.py    # Unit test untuk model kendaraan
+├── env/                           # Virtual Environment Python
+├── conftest.py                    # Konfigurasi root pytest
+├── main.py                        # Titik masuk utama aplikasi (Entry Point)
+├── requirements.txt               # Daftar dependensi pustaka Python
+└── README.md                      # Dokumentasi proyek
